@@ -33,15 +33,6 @@ def main():
     for node in graph.nodes():
         node_children[node] = list(graph.neighbors(node))
 
-    for node, children in node_children.items():
-        for child in children:
-            if node in node_children.get(child, []):
-                node_imports_count = len(node_children[node])
-                child_imports_count = len(node_children[child])
-                if node_imports_count > child_imports_count:
-                    node_children[child].remove(node)
-                else:
-                    node_children[node].remove(child)
 
     def dfs(node, annotated):
 
@@ -56,6 +47,7 @@ def main():
         # annotate_file(node, node_children.get(node, []))
 
         logging.info("Node: %s, Children: %s", node, node_children.get(node, []))
+
 
     annotated = set()
 
