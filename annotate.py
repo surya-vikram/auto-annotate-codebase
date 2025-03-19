@@ -5,7 +5,7 @@ from llm import api_client
 from prompt import template_prompt
 
 
-parent_dir = Path.cwd() / 'astropy'
+parent_dir = Path.cwd() / os.environ.get("DIRECTORY_NAME")
 print(f"Parent directory: {parent_dir}")
 
 def get_node_path(node):
@@ -67,9 +67,6 @@ def annotate_file(node, children=[]):
 
     output = api_client(prompt=formatted_prompt)
 
-    with open('ouput_file', "w") as file:
-        file.write(output)
-
     pattern = re.compile(r"```python(.*?)```", re.DOTALL)
     matches = pattern.findall(output)
 
@@ -90,7 +87,3 @@ def annotate_file(node, children=[]):
 
     with open(new_file_path, "w") as file:
         file.write(python_code)
-
-
-if __name__ == "__main__":
-    annotate_file("astropy.io.fits", ["astropy.io.ascii"])
