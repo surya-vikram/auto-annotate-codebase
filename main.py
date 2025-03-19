@@ -2,7 +2,7 @@ import sys
 import os
 import logging
 from networkx.drawing.nx_pydot import read_dot
-# from annotate import annotate_file
+from annotate import annotate_file
 
 def main():
     if len(sys.argv) != 4:
@@ -44,7 +44,7 @@ def main():
             if child not in annotated:
                 dfs(child, annotated)
 
-        # annotate_file(node, node_children.get(node, []))
+        annotate_file(node, node_children.get(node, []))
 
         logging.info("Node: %s, Children: %s", node, node_children.get(node, []))
 

@@ -1,5 +1,4 @@
 venv
 astropy
 .env
-logs
 __pycache__
